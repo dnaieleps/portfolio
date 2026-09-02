@@ -1,0 +1,328 @@
+/* RANADE FONT FAMILY IMPORTS */
+@font-face {
+    font-family: 'Ranade Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Ranade Regular'), url('./assets/fonts/ranade-webfont/Ranade-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Ranade Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Ranade Italic'), url('./assets/fonts/ranade-webfont/Ranade-Italic.woff') format('woff');
+}
+@font-face {
+    font-family: 'Ranade Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Ranade Bold'), url('./assets/fonts/ranade-webfont/Ranade-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Ranade Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Ranade Bold Italic'), url('./assets/fonts/ranade-webfont/Ranade-BoldItalic.woff') format('woff');
+}
+
+
+/* GLOBAL STYLES */
+body {
+    background-color: black;
+    color: rgb(188, 178, 204);
+    font-family: Ranade Regular;
+    overflow-x: hidden;
+}
+nav {
+    position: fixed; 
+    width: 100%;
+    height: 7vh;
+    top: 0;
+    background-color: #0d0f10;
+    text-align: right;
+    align-content: center;
+    z-index: 11;
+}
+
+
+/* CLASS STYLING */
+.btn {
+    background-color: #0d0f10;
+    color: rgb(188, 178, 204);
+    padding: 10px;
+    border-radius: 15%;
+    border-width: 0px;
+    font-size: large;
+    font-family: Ranade Regular;
+    margin-right: 30px;
+}
+.btn:hover {
+    background-color: #1d1e20;
+}
+.btn:active {
+    background-color: #545558;
+    transform: scale(0.95);
+}
+.container {
+    position: relative;
+    background-color: #181a1b;
+    border-radius: 20px; 
+    opacity: 80%;
+    padding: 5px 25px;
+}
+.project-container {
+    display: grid;
+    width: 45vw;
+    height: 50vh;
+    background-color: #181a1b;
+    box-sizing: border-box;
+    border-radius: 20px;
+    text-align: center;
+    opacity: 80%;
+    padding: 40px;
+    z-index: 10;
+}
+.project-container:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease-in-out;
+}
+.carousel-container {
+    position: relative;
+    display: flex; 
+    align-items: center;
+    width: 20vw;
+    height: 15vw;
+    background-color: rgb(189, 160, 217);
+    align-self: right; 
+    z-index: 10;
+}
+.spacer {
+    margin-bottom: 600px; 
+}
+.textbox {
+    text-align: left;
+    margin: 15px;
+    width: 20vw;
+    height: 35vh;
+    cursor: pointer;
+}
+.project-link {
+    color: rgb(188, 178, 204);
+}
+.icon {
+    width: 2.5vw;
+    aspect-ratio: 1/1;
+    background-color: rgb(221, 195, 245);
+    border-radius: 20%;
+    margin-left: 10px;
+}
+.job {
+    width: 10vw; 
+    aspect-ratio: 1/1;
+    border-radius: 50%; 
+}
+
+
+/* INDIVIDUAL ELEMENT STYLING */
+#intro {
+    position: relative;
+    margin-inline: auto;
+    width: 50vw;
+    top: 35vh;
+    z-index: 1;
+}
+#projects {
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    width: 10vw;
+    margin-bottom: 5vh;
+    z-index: 1;
+}
+#experience {
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    width: 25vw;
+    height: 10vh;
+    margin-top: 100px;
+}
+#header {
+    font-size: 40px;
+}
+#project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 30px; 
+}
+#contact-container {
+    width: 25vw;
+    height: 20vh;
+    align-items: center;
+    text-align: center;
+    justify-self: center;
+}
+
+
+/* CLASS STYLING FOR ANIMATIONS / DESIGNS */
+.bg-star {
+    position: absolute;
+    background-color: #fffaf0;
+    border-radius: 50%;
+    z-index: -1; 
+    transition: transform 0.3s ease;
+}
+.cloud {
+    background: radial-gradient(
+        rgb(236, 126, 0) 0%,
+        rgb(166, 43, 15) 75%
+    );
+    z-index: -1; 
+}
+.core {
+    background: radial-gradient(
+        rgb(245, 245, 245) 0%,
+        rgb(255, 238, 0) 75%
+    );
+    z-index: -1; 
+}
+
+.star {
+    border-radius: 50%; 
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(
+        rgb(255, 255, 255) 0%,
+        rgb(255, 230, 5) 75%
+    );
+}
+.shine {
+    position: relative;
+    left: 10vw;
+    clip-path: path('M 50 0 Q 50 50 100 100 Q 50 75 0 100 Q 50 50 50 0');
+}
+
+
+/* INDIVIDUAL ELEMENT STYLING FOR ANIMATIONS / DESIGNS */
+#star-field {
+    z-index: 0;
+}
+#star1 {
+    position: absolute; 
+    top: 20vh; 
+    left: 75vw;
+    width: 200px; 
+    height: 200px;
+    border-radius: 50%; 
+    background: radial-gradient(
+        rgb(255, 255, 255) 0%,
+        rgb(234, 255, 0) 50%,          
+        rgb(255, 162, 0) 75%
+    );
+    filter: blur(5px);
+    z-index: 1;
+
+    offset-path: ellipse(30vw 20vh at 50vw 50vh); 
+    offset-rotate: 0deg;
+    animation: move-star 60s linear infinite;
+}
+#corona1 {
+    position: absolute;
+    width: 1000px;
+    height: 1000px; 
+    border-radius: 50%; 
+    background: radial-gradient(
+        rgba(255, 96, 79, 0.75) 0%,   
+        rgba(255, 142, 142, 0.3) 30%,  
+        rgba(0, 0, 0, 0) 60%
+    );
+    filter: blur(5px);
+    transform: translate(-40%, -40%);
+    z-index: -100;
+}
+#orbit-container1 {
+    position: absolute;
+    top: 20%;
+    left: 0%;
+    transform: rotate(-10deg);
+}
+#star2 {
+    position: absolute; 
+    top: 5vh; 
+    left: 60vw;
+    width: 150px; 
+    height: 150px;
+    border-radius: 50%; 
+    background: radial-gradient(
+        rgb(255, 255, 255) 0%,   
+        rgb(103, 252, 255) 50%,  
+        rgb(0, 60, 255) 75%
+    );
+    filter: blur(5px);
+    z-index: 1;
+
+    offset-path: ellipse(20vw 30vh at 50vw 50vh); 
+    offset-rotate: 0deg;
+    animation: move-star 60s linear infinite;
+}
+#corona2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 1000px; 
+    border-radius: 50%; 
+    background: radial-gradient(
+        rgb(87, 193, 255) 0%,   
+        rgba(94, 153, 168, 0.4) 30%,  
+        rgba(0, 0, 0, 0) 60%
+    );
+    filter: blur(5px);
+    transform: translate(-50%, -50%);
+    z-index: -100;
+}
+#orbit-container2 {
+    position: absolute;
+    top: -50%;
+    left: 80%;
+    transform: rotate(80deg);
+}
+#cursor-follower {
+    position: fixed; 
+    pointer-events: none; 
+    width: 25px;
+    height: 25px; 
+    border-radius: 50%;
+    z-index: 100; 
+    opacity: 50%;
+    transform: translate(-50%, -50%); 
+
+    background: radial-gradient(
+        rgb(255, 251, 131, 1) 0%,   
+        rgba(255, 179, 1, 0.5) 50%,  
+        rgba(0, 0, 0, 0) 70%
+    );
+}
+#galaxy-container {
+    position: absolute;
+    top: 180%;
+    left: 10%;
+    width: 100vw;
+    height: 100%;
+    transform: translate(-50%, -50%) rotate(10deg);
+    pointer-events: none; 
+    z-index: -10;
+}
+
+
+/* ALL ANIMATIONS VIA KEYFRAMES */
+@keyframes move-star {
+    0% {offset-distance: 0%;}
+    50% {transform: scale(0.6)}
+    100% {offset-distance: 100%;}
+}
