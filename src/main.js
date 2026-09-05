@@ -12,7 +12,7 @@ for(let i = 0; i < numStars; i++){
     star.style.width = `${starSize}px`;
     star.style.height = `${starSize}px`;
     star.style.left = `${Math.random() * 100}%`;
-    star.style.top = `${Math.random() * 400}%`;
+    star.style.top = `${Math.random() * 500}%`;
 
     starField.appendChild(star);   // appends new star to starField div element
 }
@@ -111,14 +111,16 @@ for(let i = 0; i < numClouds; i++) {
 galaxy.style.transform = "rotate(10deg)";   // tilting the galaxy by 10 degrees
 
 
-/* CODE FOR THE CAROUSEL IN THE PROJECTS SECTION */
-const track = document.querySelector(".carousel");
-const prevButton = document.querySelector(".prev-button");
-const nextButton = document.querySelector(".next-button");
+/* */
+const numRaysPerRotation = 4; 
 
-prevButton.addEventListener('click', () => {
-    track.scrollBy({left: -scrollAmount, behavior: 'smooth'});
-});
-nextButton.addEventListener('click', () => {
-    track.scrollBy({left: scrollAmount, behavior: 'smooth'});
-});
+for (let i = 0; i < numRaysPerRotation; i++) {
+    const ray = document.createElement('div');
+    ray.classList.add('skinny-ray');
+    
+    // Offset the skinny rays by dividing the angle by 2 so they sit between the fat rays
+    const angle = (i * (360 / numRaysPerRotation)) + (180 / numRaysPerRotation);
+    ray.style.transform = `rotate(${angle}deg)`;
+    
+    rayContainer.appendChild(ray);
+}

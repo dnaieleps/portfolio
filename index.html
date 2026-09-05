@@ -37,77 +37,118 @@
 
     <!-- PROJECTS SECTION -->
     <div id="projects" class="container">
-        <h2>Projects</h2>
+        <h1>PROJECTS</h1>
     </div>  
     <div id="galaxy-container"></div>   <!-- container for galaxy in projects section background -->
     <div id="project-grid">
-        <div class="project-container">
-            <h3><a href="https://github.com/dnaieleps/einsteins-playground" class="project-link" target="_blank">Einstein's Playground</a></h3>
-            <p class="textbox">
-                A full-stack undergraduate physics simulator and learner. Integrated with AI to track performance and  
-                aid understanding at every step of the way. Includes topics from all general physics courses ranging from
-                basic kinematics to circuits and relativity. Also includes miscellaneous topics from other physics courses.
-            </p>
-            <div class="carousel-container">
-                <button class="prev-button"></button>
-                <div class="carousel">
-                    <img src="" alt="Project image 1">
-                    <img src="" alt="Project image 2">
-                    <img src="" alt="Project image 3">
-                </div>
-                <button class="next-button"></button>
+        <a href="https://github.com/dnaieleps/einsteins-playground" class="project-link" target="_blank">
+            <div class="project-container">
+                <h2 class="project-header">Einstein's Playground</h2>
+                <p class="textbox">
+                    A full-stack undergraduate physics simulator and learner. Integrated with AI to track performance and  
+                    aid understanding at every step of the way. Includes topics from all general physics courses ranging from
+                    basic kinematics to circuits and relativity. Also includes miscellaneous topics from other physics courses.
+                </p>
+                <img src="" alt="" class="project-image">
+                <h3 class="tool-title">Tools used:</h3>
             </div>
-        </div>
-        <div class="project-container">
-            <h3><a href="https://github.com/dnaieleps/nasa-internship" class="project-link" target="_blank">High Energy Particle Simulator</a></h3>
-            <p class="textbox">
-                A particle heatmap generator produced to aid NASA's Europa Clipper flagship mission to explore the Jovian
-                moon for traces of life. Simulates the complex trajectories of 27 million particles through a multifarious 
-                magnetic field and tracks their landing location. Utilizes parallel processing and C-level compilation to 
-                cut down runtime. 
-            </p>
-        </div>
-        <div class="project-container">
-            <h3><a href="https://github.com/dnaieleps/quakeAI" class="project-link" target="_blank">QuakeAI</a></h3>
-            <p class="textbox">
-                An XGBoost Regressor tree machine learning model that can predict the magnitude and depth of an earthquake with
-                85% accuracy. The model was based off of a dataset of ~10,000 earthquakes of magnitude >= 5.0 ever since 1980. The
-                model predicts within ±0.5 magnitude and ±100km depth at a high rate. 
-            </p>
-        </div>
-        <div class="project-container">
-            <h3><a href="https://github.com/dnaieleps" class="project-link" target="_blank">Miscellaneous Programs</a></h3>
-            <p class="textbox">
-                A collection of many different classic programs recreated in my own style. This collection includes a recreation
-                of Tetris (C++), Minesweeper (Java), and a Scientific Calculator (JavaScript) inspired by Desmos that supports nested 
-                expressions, multiline operations, and edge-catching/error handling. 
-            </p>
-        </div>
+        </a>
+        <a href="https://github.com/dnaieleps/nasa-internship" class="project-link" target="_blank">
+            <div class="project-container">
+                <h2 class="project-header">High Energy Particle Simulator</h2>
+                <p class="textbox">
+                    A particle heatmap generator produced to aid NASA's Europa Clipper flagship mission to explore the Jovian
+                    moon for traces of life. Simulates the complex trajectories of 27 million particles through a multifarious 
+                    magnetic field and tracks their landing location. Utilizes parallel processing and C-level compilation to 
+                    cut down runtime. 
+                </p>
+                <img src="src/assets/images/ion gyromotion.png" alt="Three Ion Trajectories" class="project-image">
+                <h3 class="tool-title">Tools used:</h3>
+                <div class="scroll-container">
+                    <img src="src/assets/icons/python.webp" alt="" class="project-icon" title="Python">
+                    <img src="src/assets/icons/numpy.png" alt="" class="project-icon" title="NumPy">
+                    <img src="src/assets/icons/matplotlib.webp" alt="" class="project-icon" title="Matplotlib">
+                    <img src="src/assets/icons/numba.webp" alt="" class="project-icon" title="Numba">
+                </div>
+            </div>
+        </a>
+        <a href="https://github.com/dnaieleps/quakeAI" class="project-link" target="_blank">
+            <div class="project-container">
+                <h2 class="project-header">QuakeAI</h2>
+                <p class="textbox">
+                    An XGBoost Regressor tree machine learning model that can predict the magnitude and depth of an earthquake with
+                    85% accuracy. The model was based off of a dataset of ~10,000 earthquakes of magnitude >= 5.0 ever since 1980. The
+                    model predicts within ±0.5 magnitude and ±100km depth at a high rate. 
+                </p>
+                <img src="" alt="" class="project-image">
+                <h3 class="tool-title">Tools used:</h3>
+            </div>
+        </a>
+        <a href="https://github.com/dnaieleps" class="project-link" target="_blank">
+            <div class="project-container">
+                <h2 class="project-header">Miscellaneous Programs</h2>
+                <p class="textbox">
+                    A collection of many different classic programs recreated in my own style. This collection includes a recreation
+                    of Tetris (C++), Minesweeper (Java), and a Scientific Calculator (JavaScript) inspired by Desmos that supports nested 
+                    expressions, multiline operations, and edge-catching/error handling. 
+                </p>
+                <img src="" alt="" class="project-image">
+                <h3 class="tool-title">Tools used:</h3>
+            </div>
+        </a>
     </div>
 
 
     <!-- EXPERIENCE SECTION make it like a graph of connected stars oooh-->
     <div>
-        <h2 class="container" id="experience">Professional Experience</h2>
+        <h1 class="container" id="experience">EXPERIENCE</h1>
     </div>
 
     <div id="constellation-container">  <!-- container for experience section constellation background-->
         <div class="job" id="nasa1">
-            <div class="star"></div>
+            <img src="src/assets/icons/nasa.png" alt="NASA logo" class="job-icon">
             <div class="shine"></div>
+            <div class="fat-ray"></div>
+            <div class="thin-ray"></div>
+            <div class="horizontal-ray"></div>
         </div>
-        <div class="job" id="moorpark1"><img src="" alt=""></div>
-        <div class="job" id="moorpark2"><img src="" alt=""></div>
-        <div class="job" id="nasa2"><img src="" alt=""></div>
-        <div class="job" id="aila"><img src="" alt=""></div>
+        <div class="job" id="moorpark1">
+            <img src="src/assets/icons/moorpark.png" alt="Moorpark College logo" class="job-icon">
+            <div class="shine"></div>
+            <div class="fat-ray"></div>
+            <div class="thin-ray"></div>
+            <div class="horizontal-ray"></div>
+        </div>
+        <div class="job" id="moorpark2">
+            <img src="src/assets/icons/moorpark.png" alt="Moorpark College logo" class="job-icon">
+            <div class="shine"></div>
+            <div class="fat-ray"></div>
+            <div class="thin-ray"></div>
+            <div class="horizontal-ray"></div>
+        </div>
+        <div class="job" id="nasa2">
+            <img src="src/assets/icons/nasa.png" alt="NASA logo" class="job-icon">
+            <div class="shine"></div>
+            <div class="fat-ray"></div>
+            <div class="thin-ray"></div>
+            <div class="horizontal-ray"></div>
+        </div>
+        <div class="job" id="aila">
+            <img src="src/assets/icons/aila.jpeg" alt="AILA logo" class="job-icon">
+            <div class="shine"></div>
+            <div class="fat-ray"></div>
+            <div class="thin-ray"></div>
+            <div class="horizontal-ray"></div>
+        </div>
     </div>   
 
 
     <!-- CONTACTS, RESUME, & OTHER SECTION -->
     <div id="contact"></div>
     <div class="container" id="contact-container">
-        <h2>Contact me!</h2>
+        <h1>Contact me!</h1>
         <p>danespiritu.business [at] gmail [dot] com</p>
+        <p>(818) 836-2471</p>
         <div id="linkbox">
             <a href="https://www.linkedin.com/in/daniel-espiritu-0a104b326" target="_blank"><img src="src/assets/icons/linkedin.png" alt="LinkedIn" class="icon"></a>
             <a href="https://app.joinhandshake.com/profiles/g6kqwv" target="_blank"><img src="src/assets/icons/handshake.png" alt="Handshake" class="icon"></a>

@@ -41,27 +41,31 @@ nav {
     text-align: right;
     align-content: center;
     z-index: 11;
+
+    .btn {
+        background-color: #0d0f10;
+        color: rgb(188, 178, 204);
+        padding: 10px;
+        border-radius: 15%;
+        border-width: 0px;
+        font-size: large;
+        font-family: Ranade Regular;
+        margin-right: 30px;
+    }
+    .btn:hover {
+        background-color: #1d1e20;
+    }
+    .btn:active {
+        background-color: #545558;
+        transform: scale(0.95);
+    }
+}
+a {
+    text-decoration: none;
 }
 
 
 /* CLASS STYLING */
-.btn {
-    background-color: #0d0f10;
-    color: rgb(188, 178, 204);
-    padding: 10px;
-    border-radius: 15%;
-    border-width: 0px;
-    font-size: large;
-    font-family: Ranade Regular;
-    margin-right: 30px;
-}
-.btn:hover {
-    background-color: #1d1e20;
-}
-.btn:active {
-    background-color: #545558;
-    transform: scale(0.95);
-}
 .container {
     position: relative;
     background-color: #181a1b;
@@ -71,8 +75,8 @@ nav {
 }
 .project-container {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
     width: 45vw;
-    height: 50vh;
     background-color: #181a1b;
     box-sizing: border-box;
     border-radius: 20px;
@@ -85,16 +89,6 @@ nav {
     transform: scale(1.02);
     transition: transform 0.3s ease-in-out;
 }
-.carousel-container {
-    position: relative;
-    display: flex; 
-    align-items: center;
-    width: 20vw;
-    height: 15vw;
-    background-color: rgb(189, 160, 217);
-    align-self: right; 
-    z-index: 10;
-}
 .spacer {
     margin-bottom: 600px; 
 }
@@ -104,6 +98,7 @@ nav {
     width: 20vw;
     height: 35vh;
     cursor: pointer;
+    overflow: auto;
 }
 .project-link {
     color: rgb(188, 178, 204);
@@ -116,9 +111,47 @@ nav {
     margin-left: 10px;
 }
 .job {
-    width: 10vw; 
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 40vw; 
     aspect-ratio: 1/1;
-    border-radius: 50%; 
+    justify-content: center;
+}
+.job-icon {
+    position: absolute;
+    width: 100px; 
+    aspect-ratio: 1/1; 
+    z-index: 10;
+}
+.project-header {
+    grid-column: span 2;
+}
+.project-image {
+    max-width: 75%;
+    justify-self: center;
+    align-self: center;
+    background-color: white;
+    grid-auto-flow: row dense;
+}
+.project-icon {
+    width: 2.5vw;
+    aspect-ratio: 1/1;
+    border-radius: 20%;
+    margin-left: 10px;
+}
+.tool-title {
+    text-align: left;
+    justify-self: first baseline;
+    align-self: center;
+    margin-left: 15px;
+}
+.scroll-container {
+    overflow-x: auto; 
+    align-self: center;
+    align-items: center;
+    text-align: left;
+    margin-left: -70%;
 }
 
 
@@ -146,7 +179,7 @@ nav {
     justify-content: center;
     align-items: center;
     position: relative; 
-    width: 25vw;
+    width: 15vw;
     height: 10vh;
     margin-top: 100px;
 }
@@ -162,10 +195,29 @@ nav {
 }
 #contact-container {
     width: 25vw;
-    height: 20vh;
-    align-items: center;
     text-align: center;
     justify-self: center;
+    padding-bottom: 40px;
+}
+#nasa1 {
+    position: absolute;
+    left: 10vw;
+}
+#moorpark1 {
+    position: absolute;
+    left: 25vw;
+}
+#moorpark2 {
+    position: absolute;
+    left: 40vw;
+}
+#nasa2 {
+    position: absolute;
+    left: 55vw;
+}
+#aila {
+    position: absolute;
+    left: 70vw;
 }
 
 
@@ -191,20 +243,58 @@ nav {
     );
     z-index: -1; 
 }
-
-.star {
-    border-radius: 50%; 
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(
-        rgb(255, 255, 255) 0%,
-        rgb(255, 230, 5) 75%
-    );
-}
 .shine {
     position: relative;
-    left: 10vw;
-    clip-path: path('M 50 0 Q 50 50 100 100 Q 50 75 0 100 Q 50 50 50 0');
+    border-radius: 50%; 
+    width: 10vw;
+    aspect-ratio: 1/1;
+    background: radial-gradient(
+        rgb(255, 255, 255) 0%,
+        rgb(255, 230, 5) 10%,
+        rgb(0, 0, 0) 75%
+    );
+    filter: blur(5px);
+    z-index: -1; 
+}
+.fat-ray {
+    position: absolute; 
+    border-radius: 50%; 
+    width: 8vw; 
+    aspect-ratio: 1/2;
+    background: radial-gradient(
+        rgb(255, 255, 255) 0%,
+        rgb(255, 230, 5) 10%,
+        rgb(0, 0, 0) 75%
+    );
+    z-index: 5;
+    filter: blur(10px);
+}
+.thin-ray {
+    position: absolute; 
+    border-radius: 50%; 
+    width: 4vw; 
+    aspect-ratio: 1/8;
+    background: radial-gradient(
+        rgb(255, 255, 255) 0%,
+        rgb(255, 230, 5) 10%,
+        rgb(0, 0, 0) 75%
+    );
+    z-index: 5;
+    filter: blur(10px);
+}
+.horizontal-ray {
+    position: absolute; 
+    border-radius: 50%; 
+    width: 4vw; 
+    aspect-ratio: 1/7;
+    background: radial-gradient(
+        rgb(255, 255, 255) 0%,
+        rgb(255, 230, 5) 10%,
+        rgb(0, 0, 0) 75%
+    );
+    z-index: 5;
+    filter: blur(20px);
+    transform: rotate(90deg);
 }
 
 
@@ -317,6 +407,11 @@ nav {
     transform: translate(-50%, -50%) rotate(10deg);
     pointer-events: none; 
     z-index: -10;
+}
+#constellation-container {
+    height: 100vh;
+    display: grid; 
+    place-items: top left;
 }
 
 
