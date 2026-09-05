@@ -94,6 +94,7 @@ a {
 }
 .textbox {
     text-align: left;
+    align-self: center;
     margin: 15px;
     width: 20vw;
     height: 35vh;
@@ -129,14 +130,17 @@ a {
 }
 .project-image {
     max-width: 75%;
+    border-radius: 10%;
+    border-width: 10px;
+    border-color: rgb(188, 178, 204);
     justify-self: center;
     align-self: center;
     background-color: white;
     grid-auto-flow: row dense;
 }
 .project-icon {
-    width: 2.5vw;
-    aspect-ratio: 1/1;
+    max-height: 2.5vw;
+    width: auto;
     border-radius: 20%;
     margin-left: 10px;
 }
@@ -148,10 +152,15 @@ a {
 }
 .scroll-container {
     overflow-x: auto; 
+    white-space: nowrap;
+    scrollbar-width: none;
     align-self: center;
     align-items: center;
     text-align: left;
     margin-left: -70%;
+}
+.dark-icon {
+    background-color: white;
 }
 
 
