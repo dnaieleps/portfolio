@@ -93,11 +93,16 @@ a {
     margin-bottom: 600px; 
 }
 .textbox {
+    grid-column: span 1;
     text-align: left;
     align-self: center;
+    border-radius: 10%;
+    border: 1px solid rgb(188, 178, 204, 0.3);
+    padding: 10px;
     margin: 15px;
     width: 20vw;
     height: 35vh;
+    text-indent: 2vw;
     cursor: pointer;
     overflow: auto;
 }
@@ -125,8 +130,16 @@ a {
     aspect-ratio: 1/1; 
     z-index: 10;
 }
+.job-icon:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
 .project-header {
+    position: relative;
+    justify-self: center;
     grid-column: span 2;
+    margin-right: 40px;
 }
 .project-image {
     max-width: 75%;
@@ -135,7 +148,6 @@ a {
     border-color: rgb(188, 178, 204);
     justify-self: center;
     align-self: center;
-    background-color: white;
     grid-auto-flow: row dense;
 }
 .project-icon {
@@ -143,6 +155,8 @@ a {
     width: auto;
     border-radius: 20%;
     margin-left: 10px;
+    filter: grayscale(100%);
+    filter: saturate(0.3);
 }
 .tool-title {
     text-align: left;
@@ -151,16 +165,27 @@ a {
     margin-left: 15px;
 }
 .scroll-container {
+    width: 37vw;
+    grid-column: span 2;
     overflow-x: auto; 
     white-space: nowrap;
     scrollbar-width: none;
     align-self: center;
     align-items: center;
     text-align: left;
-    margin-left: -70%;
+    margin-left: 15px;
+    margin-top: 15px;
 }
 .dark-icon {
     background-color: white;
+}
+.images-container {
+    display: grid;
+    max-width: 75%;
+    grid-column: span 1;
+    height: 35vh;
+    align-self: center;
+    align-items: center;
 }
 
 

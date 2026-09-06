@@ -112,15 +112,37 @@ galaxy.style.transform = "rotate(10deg)";   // tilting the galaxy by 10 degrees
 
 
 /* */
-const numRaysPerRotation = 4; 
-
-for (let i = 0; i < numRaysPerRotation; i++) {
-    const ray = document.createElement('div');
-    ray.classList.add('skinny-ray');
+function getRandomInRange(low, high){
     
-    // Offset the skinny rays by dividing the angle by 2 so they sit between the fat rays
-    const angle = (i * (360 / numRaysPerRotation)) + (180 / numRaysPerRotation);
-    ray.style.transform = `rotate(${angle}deg)`;
-    
-    rayContainer.appendChild(ray);
 }
+
+const numRaysPerRotation = 4; 
+const jobs = document.querySelectorAll(".job");
+jobs.forEach((job) => {
+    const shine = document.createElement("div")
+    const fatRay = document.createElement("div")
+    const thinRay = document.createElement("div")
+    const horizontalRay = document.createElement("div")
+
+    for(let i = 0; i < 4; i++) {
+        switch (i) {
+            case 0:
+                console.log('yo')
+            case 1:
+                console.log('yo')
+            case 2:
+                console.log('yo')
+            case 3:
+                console.log('yo')
+        }
+    }
+    shine.classList.add("shine");
+    fatRay.classList.add("fat-ray");
+    thinRay.classList.add("thin-ray");
+    horizontalRay.classList.add("horizontal-ray");
+
+    let scalar = 1 - (Math.random() * 0.3)
+    
+
+    job.appendChild()
+});
