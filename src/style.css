@@ -34,12 +34,14 @@ body {
 }
 nav {
     position: fixed; 
-    width: 100%;
+    width: 101%;
     height: 7vh;
+    left: -10px;
     top: 0;
     background-color: #0d0f10;
     text-align: right;
     align-content: center;
+    overflow-x: auto;
     z-index: 11;
 
     .btn {
@@ -110,11 +112,11 @@ a {
     color: rgb(188, 178, 204);
 }
 .icon {
-    width: 2.5vw;
-    aspect-ratio: 1/1;
-    background-color: rgb(221, 195, 245);
+    height: 2.5vw;
+    width: auto;
     border-radius: 20%;
     margin-left: 10px;
+    cursor: pointer;
 }
 .job {
     position: absolute;
@@ -187,6 +189,29 @@ a {
     align-self: center;
     align-items: center;
 }
+.job-description-container {
+    position: relative;
+    width: 40vw;
+    display: grid;
+    border-radius: 20px;
+    grid-template-columns: repeat(1, 1fr);
+    background-color: #181a1b;
+    text-align: center;
+    opacity: 0%;
+    padding: 2vh 3vw;
+    z-index: 10;
+    transition: opacity 0.5s ease-in-out;
+}
+.job-icon:hover + .job-description-container {
+    opacity: 80%;
+}
+.job-title {
+    margin: 1vh 0vw;
+}
+.job-description {
+    text-indent: 2vw;
+    text-align: left;
+}
 
 
 /* INDIVIDUAL ELEMENT STYLING */
@@ -235,23 +260,48 @@ a {
 }
 #nasa1 {
     position: absolute;
-    left: 10vw;
+    left: 0vw;
+    top: -20vh;
 }
 #moorpark1 {
     position: absolute;
-    left: 25vw;
+    left: 7vw;
+    top: 30vh;
 }
 #moorpark2 {
     position: absolute;
-    left: 40vw;
+    left: 34vw;
+    top: 0vh;
 }
 #nasa2 {
     position: absolute;
-    left: 55vw;
+    left: 40vw;
+    top: 60vh;
 }
 #aila {
     position: absolute;
-    left: 70vw;
+    left: 55vw;
+    top: 100vh;
+}
+#nasa1-desc {
+    position: absolute;
+    left: 30vw;
+}
+#moorpark1-desc {
+    position: absolute;
+    left: 30vw;
+}
+#moorpark2-desc {
+    position: absolute;
+    left: -32vw;
+}
+#nasa2-desc {
+    position: absolute;
+    left: -35vw;
+}
+#aila-desc {
+    position: absolute;
+    left: -35vw;
 }
 
 
@@ -278,7 +328,7 @@ a {
     z-index: -1; 
 }
 .shine {
-    position: relative;
+    position: absolute;
     border-radius: 50%; 
     width: 10vw;
     aspect-ratio: 1/1;
@@ -329,6 +379,12 @@ a {
     z-index: 5;
     filter: blur(20px);
     transform: rotate(90deg);
+}
+.connector {
+    display: absolute;
+    width: 10vw; 
+    height: 10vh;
+    background-color: white;
 }
 
 
@@ -443,9 +499,9 @@ a {
     z-index: -10;
 }
 #constellation-container {
-    height: 100vh;
-    display: grid; 
-    place-items: top left;
+    position: relative;
+    height: 175vh;
+    width: 100vw;
 }
 
 

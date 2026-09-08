@@ -110,13 +110,23 @@ for(let i = 0; i < numClouds; i++) {
 
 galaxy.style.transform = "rotate(10deg)";   // tilting the galaxy by 10 degrees
 
-
 /* */
+const jobIcons = document.querySelectorAll(".job-icon")
+jobIcons.forEach((jobIcon) => {
+    jobIcon.addEventListener('hover', () => {
+        const jobDescription = jobIcon.parentElement.querySelector(".job-description");
+
+        jobDescription.style.opacity = 0.8;
+    });
+});
+
+
+/*
 function getRandomInRange(low, high){
     
 }
 
-const numRaysPerRotation = 4; 
+const numRays = 4; 
 const jobs = document.querySelectorAll(".job");
 jobs.forEach((job) => {
     const shine = document.createElement("div")
@@ -124,10 +134,10 @@ jobs.forEach((job) => {
     const thinRay = document.createElement("div")
     const horizontalRay = document.createElement("div")
 
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < numRays; i++) {
         switch (i) {
             case 0:
-                console.log('yo')
+                
             case 1:
                 console.log('yo')
             case 2:
@@ -146,3 +156,4 @@ jobs.forEach((job) => {
 
     job.appendChild()
 });
+*/
