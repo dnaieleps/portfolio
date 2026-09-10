@@ -88,7 +88,7 @@ for(let i = 0; i < numClouds; i++) {
 
     // if statement to animate only a proportion of the peripheral clouds to move back and forth
     if (Math.random() < proportionToAnimate) {
-        const driftDistance = (Math.random() * 150 + 50) * flipper;     // randomizes how far they drift (between 50px and 200px)
+        const driftDistance = (Math.random() * 100 + 100) * flipper;     // randomizes how far they drift (between 100px and 200px)
         const animationSpeed = Math.random() * 4000 + 8000;     // randomizes the animation speed (between 8 and 12 secs)
 
         // css animation block
@@ -107,53 +107,79 @@ for(let i = 0; i < numClouds; i++) {
     sizeScalar -= 0.01;         // how much percent smaller each cloud gets as the cloud gets further from the galactic center
     flipper *= -1;              // alternating sides to spawn clouds every iteration
 }
-
 galaxy.style.transform = "rotate(10deg)";   // tilting the galaxy by 10 degrees
 
-/* */
-const jobIcons = document.querySelectorAll(".job-icon")
-jobIcons.forEach((jobIcon) => {
-    jobIcon.addEventListener('hover', () => {
-        const jobDescription = jobIcon.parentElement.querySelector(".job-description");
 
-        jobDescription.style.opacity = 0.8;
+/* EVENT LISTENERS THAT DYNAMICALLY CHANGE THE CONNECTING CONSTELLATION LINES WITH WINDOW SIZE */
+// function that dynamically fixes the connecting line's anchor points onto two other elements
+function fixJobAnchors(object, anchor1, anchor2) {
+    const xPos1 = anchor1.offsetLeft + (anchor1.offsetWidth / 2);
+    const yPos1 = anchor1.offsetTop + (anchor1.offsetHeight / 2);
+    const xPos2 = anchor2.offsetLeft + (anchor2.offsetWidth / 2);
+    const yPos2 = anchor2.offsetTop + (anchor2.offsetHeight / 2);
+
+    const distance = Math.sqrt((xPos2 - xPos1)**2 + (yPos2 - yPos1)**2);
+    const angle = Math.atan2(yPos2 - yPos1, xPos2 - xPos1) * (180 / Math.PI);
+
+    object.style.left = `${xPos1}px`;
+    object.style.top = `${yPos1}px`;
+    object.style.width = `${distance}px`;
+    object.style.transformOrigin = "0 50%";
+    object.style.transform = `rotate(${angle}deg)`;
+}
+// retrieving elements of each job star
+const nasa1 = document.getElementById('nasa1');
+const moorpark1 = document.getElementById('moorpark1');
+const moorpark2 = document.getElementById('moorpark2');
+const nasa2 = document.getElementById('nasa2');
+const aila = document.getElementById('aila');
+
+// retrieving elements of each connecting line
+const connector1 = document.getElementById('con1');
+const connector2 = document.getElementById('con2');
+const connector3 = document.getElementById('con3');
+const connector4 = document.getElementById('con4');
+const connector5 = document.getElementById('con5');
+
+// adding event listeners for every time the page first loads
+window.addEventListener('load', () => {
+    fixJobAnchors(connector1, nasa1, moorpark1)
+    fixJobAnchors(connector2, nasa1, moorpark2)
+    fixJobAnchors(connector3, moorpark1, nasa2)
+    fixJobAnchors(connector4, moorpark2, nasa2)
+    fixJobAnchors(connector5, nasa2, aila)
+});
+// adding event listeners for every time the page's dimensions get resized
+window.addEventListener('resize', () => {
+    fixJobAnchors(connector1, nasa1, moorpark1)
+    fixJobAnchors(connector2, nasa1, moorpark2)
+    fixJobAnchors(connector3, moorpark1, nasa2)
+    fixJobAnchors(connector4, moorpark2, nasa2)
+    fixJobAnchors(connector5, nasa2, aila)
+});
+
+
+/* MAKING THE HOVER MECHANICS FOR THE JOB DESCRIPTIONS AND ICONS */
+const jobs = document.querySelectorAll(".job")
+jobs.forEach((job) => {
+    const icon = job.querySelector(".job-icon");
+    const description = job.querySelector(".job-description-container");
+    let hideTimeout;    // variable used to store time until job description fades out
+
+    icon.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout); 
+        description.style.opacity = "0.8";
+    });
+    icon.addEventListener('mouseleave', () => {
+        hideTimeout = setTimeout(() => {
+            description.style.opacity = "0";
+        }, 100);
+    });
+
+    description.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout);
+    });
+    description.addEventListener('mouseleave', () => {
+        description.style.opacity = "0";
     });
 });
-
-
-/*
-function getRandomInRange(low, high){
-    
-}
-
-const numRays = 4; 
-const jobs = document.querySelectorAll(".job");
-jobs.forEach((job) => {
-    const shine = document.createElement("div")
-    const fatRay = document.createElement("div")
-    const thinRay = document.createElement("div")
-    const horizontalRay = document.createElement("div")
-
-    for(let i = 0; i < numRays; i++) {
-        switch (i) {
-            case 0:
-                
-            case 1:
-                console.log('yo')
-            case 2:
-                console.log('yo')
-            case 3:
-                console.log('yo')
-        }
-    }
-    shine.classList.add("shine");
-    fatRay.classList.add("fat-ray");
-    thinRay.classList.add("thin-ray");
-    horizontalRay.classList.add("horizontal-ray");
-
-    let scalar = 1 - (Math.random() * 0.3)
-    
-
-    job.appendChild()
-});
-*/
