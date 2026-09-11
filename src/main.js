@@ -113,20 +113,23 @@ galaxy.style.transform = "rotate(10deg)";   // tilting the galaxy by 10 degrees
 /* EVENT LISTENERS THAT DYNAMICALLY CHANGE THE CONNECTING CONSTELLATION LINES WITH WINDOW SIZE */
 // function that dynamically fixes the connecting line's anchor points onto two other elements
 function fixJobAnchors(object, anchor1, anchor2) {
-    const xPos1 = anchor1.offsetLeft + (anchor1.offsetWidth / 2);
-    const yPos1 = anchor1.offsetTop + (anchor1.offsetHeight / 2);
-    const xPos2 = anchor2.offsetLeft + (anchor2.offsetWidth / 2);
-    const yPos2 = anchor2.offsetTop + (anchor2.offsetHeight / 2);
+    const xPos1 = anchor1.offsetLeft + (anchor1.offsetWidth / 2);   // setting first x position to be on anchor1's center
+    const yPos1 = anchor1.offsetTop + (anchor1.offsetHeight / 2);   // setting first y position to be on anchor1's center
+    const xPos2 = anchor2.offsetLeft + (anchor2.offsetWidth / 2);   // setting second x position to be on anchor2's center
+    const yPos2 = anchor2.offsetTop + (anchor2.offsetHeight / 2);   // setting second y position to be on anchor2's center
 
+    // using pythagorean theorem to calculate connector width and angle from anchor1
     const distance = Math.sqrt((xPos2 - xPos1)**2 + (yPos2 - yPos1)**2);
     const angle = Math.atan2(yPos2 - yPos1, xPos2 - xPos1) * (180 / Math.PI);
 
+    // setting css style attributes based on defined variables
     object.style.left = `${xPos1}px`;
     object.style.top = `${yPos1}px`;
     object.style.width = `${distance}px`;
-    object.style.transformOrigin = "0 50%";
+    object.style.transformOrigin = "0 50%"; 
     object.style.transform = `rotate(${angle}deg)`;
 }
+
 // retrieving elements of each job star
 const nasa1 = document.getElementById('nasa1');
 const moorpark1 = document.getElementById('moorpark1');
@@ -141,7 +144,7 @@ const connector3 = document.getElementById('con3');
 const connector4 = document.getElementById('con4');
 const connector5 = document.getElementById('con5');
 
-// adding event listeners for every time the page first loads
+// adding connectors for every time the page first loads
 window.addEventListener('load', () => {
     fixJobAnchors(connector1, nasa1, moorpark1)
     fixJobAnchors(connector2, nasa1, moorpark2)
@@ -149,7 +152,7 @@ window.addEventListener('load', () => {
     fixJobAnchors(connector4, moorpark2, nasa2)
     fixJobAnchors(connector5, nasa2, aila)
 });
-// adding event listeners for every time the page's dimensions get resized
+// updating connectors for every time the page's dimensions get resized
 window.addEventListener('resize', () => {
     fixJobAnchors(connector1, nasa1, moorpark1)
     fixJobAnchors(connector2, nasa1, moorpark2)
@@ -161,25 +164,111 @@ window.addEventListener('resize', () => {
 
 /* MAKING THE HOVER MECHANICS FOR THE JOB DESCRIPTIONS AND ICONS */
 const jobs = document.querySelectorAll(".job")
-jobs.forEach((job) => {
-    const icon = job.querySelector(".job-icon");
+jobs.forEach((job) => {     // loops through all elements with class 'job' and adds following event listeners
+    const icon = job.querySelector(".job-icon");    // retrieves job icon from current job in loop
     const description = job.querySelector(".job-description-container");
     let hideTimeout;    // variable used to store time until job description fades out
 
-    icon.addEventListener('mouseenter', () => {
-        clearTimeout(hideTimeout); 
+    icon.addEventListener('mouseenter', () => {     // event listener for when icon is first hovered
+        clearTimeout(hideTimeout);          // resets hideTimeout timer
         description.style.opacity = "0.8";
     });
-    icon.addEventListener('mouseleave', () => {
-        hideTimeout = setTimeout(() => {
+    icon.addEventListener('mouseleave', () => {     // event listener for when cursor first leaves job icon
+        hideTimeout = setTimeout(() => {    // starts hideTimeout timer which lasts 0.1s before fadeout begins
             description.style.opacity = "0";
         }, 100);
     });
 
-    description.addEventListener('mouseenter', () => {
-        clearTimeout(hideTimeout);
+    description.addEventListener('mouseenter', () => {  // event listener for when description is first hovered
+        clearTimeout(hideTimeout);          // resets hideTimeout timer
     });
-    description.addEventListener('mouseleave', () => {
-        description.style.opacity = "0";
+    description.addEventListener('mouseleave', () => {  // event listener for when cursor first leaves description
+        description.style.opacity = "0";    // hides description
     });
+});
+
+
+/* ADDING COPY-PASTE FUNCTIONALITY TO ICONS ON CONTACT ME SECTION */
+const email = document.getElementById('email'); 
+const phone = document.getElementById('phone');
+const linkbox = document.getElementById('linkbox');
+
+email.addEventListener('click', () => {     // adding event listener to email icon to copy paste email to clipboard
+    navigator.clipboard.writeText('danespiritu.business@gmail.com');    // copies email to clipboard
+
+    // creating confirmation popup notifying that email was copied 
+    const confirm = document.createElement('div');
+    confirm.textContent = "Email copied!";
+    confirm.classList.add('confirmation');
+
+    confirm.style.position = 'absolute';
+    confirm.style.pointerEvents = "none";
+    confirm.style.top = `${linkbox.height + 10}px`;
+    confirm.style.left = '50%';
+    confirm.style.transform = 'translateX(-50%)';
+
+    // animates confirm button to fade in and out within 1.5s
+    confirm.animate(
+        [{opacity: 1}, {opacity: 0}],
+        {
+            duration: 1500,
+            fill: 'forwards',
+            easing: 'ease-in-out'
+        }
+    );
+
+    linkbox.appendChild(confirm); 
+    setTimeout(() => confirm.remove(), 1500);
+});
+phone.addEventListener('click', (e) => {    // adding event listener to phone icon to copy paste phone number to clipboard
+    navigator.clipboard.writeText('+18188362471');      // copies phone # to clipboard
+
+    // creating confirmation popup notifying that phone # was copied 
+    const confirm = document.createElement('div');
+    confirm.textContent = "Phone # copied!";
+    confirm.classList.add('confirmation');
+
+    confirm.style.position = 'absolute';
+    confirm.style.pointerEvents = "none";
+    confirm.style.top = `${linkbox.height + 10}px`;
+    confirm.style.left = '50%';
+    confirm.style.transform = 'translateX(-50%)';
+
+    confirm.animate(
+        [{opacity: 1}, {opacity: 0}],
+        {
+            duration: 1500,
+            fill: 'forwards',
+            easing: 'ease-in-out'
+        }
+    );
+
+    linkbox.appendChild(confirm); 
+    setTimeout(() => confirm.remove(), 1500);
+});
+
+
+/* MAKING RESUME AND CV DOWNLOADABLE IN NAVBAR FROM CLICKING */
+document.getElementById('resume').addEventListener('click', () => {
+    const pdfUrl = './public/resume.pdf';
+
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = 'Daniel_Espiritu_Resume.pdf';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+
+document.getElementById('cv').addEventListener('click', () => {
+    const pdfUrl = './public/cv.pdf';
+
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = 'Daniel_Espiritu_CV.pdf';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 });

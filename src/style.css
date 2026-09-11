@@ -213,6 +213,15 @@ a {
     text-indent: 2vw;
     text-align: left;
 }
+.confirmation {
+    width: auto;
+    height: 40px;
+    padding: 0px 15px;
+    background-color: rgb(71, 69, 69);
+    border-radius: 20px;
+    justify-content: center;
+    align-content: center;
+}
 
 
 /* INDIVIDUAL ELEMENT STYLING */
@@ -258,6 +267,9 @@ a {
     text-align: center;
     justify-self: center;
     padding-bottom: 40px;
+}
+#linkbox {
+    position: relative;
 }
 #nasa1 {
     position: absolute;
@@ -495,7 +507,7 @@ a {
 }
 #galaxy-container {
     position: absolute;
-    top: 180%;
+    top: 190%;
     left: 10%;
     width: 100vw;
     height: 100%;
