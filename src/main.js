@@ -181,8 +181,11 @@ jobs.forEach((job) => {     // loops through all elements with class 'job' and a
         description.addEventListener('mouseenter', () => {  // event listener for when description is first hovered
         clearTimeout(hideTimeout);          // resets hideTimeout timer
         });
-        description.addEventListener('mouseleave', () => {  // event listener for when cursor first leaves description
-            description.style.opacity = "0";    // hides description
+
+        description.addEventListener('mouseleave', () => {  // event listener for when cursor first leaves description(s)
+            description.parentElement.querySelectorAll('.job-description-container').forEach((descriptionAgain) => {
+                descriptionAgain.style.opacity = "0";   // hides description
+            });
         });
     });
     
