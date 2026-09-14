@@ -123,8 +123,9 @@ function fixJobAnchors(object, anchor1, anchor2) {
     const angle = Math.atan2(yPos2 - yPos1, xPos2 - xPos1) * (180 / Math.PI);
 
     // setting css style attributes based on defined variables
-    object.style.left = `${xPos1}px`;
-    object.style.top = `${yPos1}px`;
+    object.style.position = 'absolute';
+    object.style.left = `${xPos1 - (anchor1.offsetWidth / 2)}px`;
+    object.style.top = `${yPos1 - (anchor1.offsetHeight / 2) - 5}px`;
     object.style.width = `${distance}px`;
     object.style.transformOrigin = "0 50%"; 
     object.style.transform = `rotate(${angle}deg)`;
@@ -136,6 +137,7 @@ const moorpark1 = document.getElementById('moorpark1');
 const moorpark2 = document.getElementById('moorpark2');
 const nasa2 = document.getElementById('nasa2');
 const aila = document.getElementById('aila');
+const jobConnector = document.getElementById('job-connector');
 
 // retrieving elements of each connecting line
 const connector1 = document.getElementById('con1');
@@ -146,19 +148,11 @@ const connector5 = document.getElementById('con5');
 
 // adding connectors for every time the page first loads
 window.addEventListener('load', () => {
-    fixJobAnchors(connector1, nasa1, moorpark1)
-    fixJobAnchors(connector2, nasa1, moorpark2)
-    fixJobAnchors(connector3, moorpark1, nasa2)
-    fixJobAnchors(connector4, moorpark2, nasa2)
-    fixJobAnchors(connector5, nasa2, aila)
+    fixJobAnchors(jobConnector, nasa1, aila);
 });
 // updating connectors for every time the page's dimensions get resized
 window.addEventListener('resize', () => {
-    fixJobAnchors(connector1, nasa1, moorpark1)
-    fixJobAnchors(connector2, nasa1, moorpark2)
-    fixJobAnchors(connector3, moorpark1, nasa2)
-    fixJobAnchors(connector4, moorpark2, nasa2)
-    fixJobAnchors(connector5, nasa2, aila)
+    fixJobAnchors(jobConnector, nasa1, aila);
 });
 
 
@@ -166,25 +160,32 @@ window.addEventListener('resize', () => {
 const jobs = document.querySelectorAll(".job")
 jobs.forEach((job) => {     // loops through all elements with class 'job' and adds following event listeners
     const icon = job.querySelector(".job-icon");    // retrieves job icon from current job in loop
-    const description = job.querySelector(".job-description-container");
+    const descriptions = job.querySelectorAll(".job-description-container");
     let hideTimeout;    // variable used to store time until job description fades out
 
     icon.addEventListener('mouseenter', () => {     // event listener for when icon is first hovered
         clearTimeout(hideTimeout);          // resets hideTimeout timer
-        description.style.opacity = "0.8";
+        descriptions.forEach((description) => {
+            description.style.opacity = "0.8";
+        });
     });
     icon.addEventListener('mouseleave', () => {     // event listener for when cursor first leaves job icon
         hideTimeout = setTimeout(() => {    // starts hideTimeout timer which lasts 0.1s before fadeout begins
-            description.style.opacity = "0";
+            descriptions.forEach((description) => {
+                description.style.opacity = "0";
+            });
         }, 100);
     });
 
-    description.addEventListener('mouseenter', () => {  // event listener for when description is first hovered
+    descriptions.forEach((description) => {
+        description.addEventListener('mouseenter', () => {  // event listener for when description is first hovered
         clearTimeout(hideTimeout);          // resets hideTimeout timer
+        });
+        description.addEventListener('mouseleave', () => {  // event listener for when cursor first leaves description
+            description.style.opacity = "0";    // hides description
+        });
     });
-    description.addEventListener('mouseleave', () => {  // event listener for when cursor first leaves description
-        description.style.opacity = "0";    // hides description
-    });
+    
 });
 
 

@@ -119,18 +119,21 @@ a {
     cursor: pointer;
 }
 .job {
+    width: 100px;
+    height: 100px;
     position: absolute;
     display: grid;
     place-items: center;
-    width: 40vw; 
+    width: auto; 
     aspect-ratio: 1/1;
     justify-content: center;
+    transform: translate(-50%, -50%)
 }
 .job-icon {
     position: absolute;
     width: 100px; 
     aspect-ratio: 1/1; 
-    z-index: 10;
+    z-index: 5;
 }
 .job-icon:hover {
     transform: scale(1.1);
@@ -190,16 +193,18 @@ a {
     align-items: center;
 }
 .job-description-container {
-    position: relative;
-    width: 40vw;
+    position: absolute;
+    width: 30vw;
+    max-height: 45vh;
+    overflow-y: auto;
     display: grid;
     border-radius: 20px;
     grid-template-columns: repeat(1, 1fr);
     background-color: #181a1b;
     text-align: center;
+    padding: 20px;
     opacity: 0%;
-    padding: 2vh 3vw;
-    z-index: 11;
+    z-index: 100;
     transition: opacity 0.5s ease-in-out;
 }
 .job-icon:hover + .job-description-container {
@@ -273,48 +278,53 @@ a {
 }
 #nasa1 {
     position: absolute;
-    left: 0vw;
-    top: -20vh;
+    left: 20vw;
+    top: 50%;
 }
 #moorpark1 {
     position: absolute;
-    left: 7vw;
-    top: 30vh;
-}
-#moorpark2 {
-    position: absolute;
-    left: 34vw;
-    top: 0vh;
+    left: 65vw;
+    top: 50%;
 }
 #nasa2 {
     position: absolute;
-    left: 40vw;
-    top: 60vh;
+    left: 110vw;
+    top: 50%;
 }
 #aila {
     position: absolute;
-    left: 55vw;
-    top: 100vh;
+    left: 155vw;
+    top: 50%;
 }
 #nasa1-desc {
     position: absolute;
-    left: 30vw;
+    left: 10vw;
 }
 #moorpark1-desc {
     position: absolute;
-    left: 30vw;
+    top: 15vh;
+    left: 10vw;
 }
 #moorpark2-desc {
     position: absolute;
-    left: -32vw;
+    top: -40vh;
+    left: 10vw;
 }
 #nasa2-desc {
     position: absolute;
-    left: -35vw;
+    left: 10vw;
 }
 #aila-desc {
     position: absolute;
-    left: -35vw;
+    left: 10vw;
+}
+#job-connector {
+    position: absolute;
+    background-color: white;
+    height: 10px;
+    opacity: 0.5;
+    filter: blur(5px);
+    z-index: -1;
 }
 
 
@@ -342,64 +352,11 @@ a {
     
     animation: glow 5s ease-in-out infinite;
 }
-.shine {
-    position: absolute;
-    border-radius: 50%; 
-    width: 10vw;
-    aspect-ratio: 1/1;
-    background: radial-gradient(
-        rgb(255, 255, 255) 0%,
-        rgb(255, 230, 5) 10%,
-        rgb(0, 0, 0) 75%
-    );
-    filter: blur(5px);
-    z-index: -1; 
-}
-.fat-ray {
-    position: absolute; 
-    border-radius: 50%; 
-    width: 8vw; 
-    aspect-ratio: 1/2;
-    background: radial-gradient(
-        rgb(255, 255, 255) 0%,
-        rgb(255, 230, 5) 10%,
-        rgb(0, 0, 0) 75%
-    );
-    z-index: 5;
-    filter: blur(10px);
-}
-.thin-ray {
-    position: absolute; 
-    border-radius: 50%; 
-    width: 4vw; 
-    aspect-ratio: 1/8;
-    background: radial-gradient(
-        rgb(255, 255, 255) 0%,
-        rgb(255, 230, 5) 10%,
-        rgb(0, 0, 0) 75%
-    );
-    z-index: 5;
-    filter: blur(10px);
-}
-.horizontal-ray {
-    position: absolute; 
-    border-radius: 50%; 
-    width: 4vw; 
-    aspect-ratio: 1/7;
-    background: radial-gradient(
-        rgb(255, 255, 255) 0%,
-        rgb(255, 230, 5) 10%,
-        rgb(0, 0, 0) 75%
-    );
-    z-index: 5;
-    filter: blur(20px);
-    transform: rotate(90deg);
-}
-.connector {
+.constellation-connector {
     position: relative;
-    height: 10px;
+    height: 2px;
     background-color: white;
-    filter: blur(10px);
+    filter: blur(2px);
     will-change: width;
     z-index: 9;
 }
@@ -515,10 +472,13 @@ a {
     pointer-events: none; 
     z-index: -10;
 }
-#constellation-container {
+#jobs-container {
     position: relative;
-    height: 175vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 80vh;
     width: 100vw;
+    scrollbar-width: none;
 }
 
 
