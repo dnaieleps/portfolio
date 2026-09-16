@@ -12,7 +12,7 @@ for(let i = 0; i < numStars; i++){
     star.style.width = `${starSize}px`;
     star.style.height = `${starSize}px`;
     star.style.left = `${Math.random() * 100}%`;
-    star.style.top = `${Math.random() * 500}%`;
+    star.style.top = `${Math.random() * 450}%`;
 
     starField.appendChild(star);   // appends new star to starField div element
 }
