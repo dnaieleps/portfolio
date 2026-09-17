@@ -110,6 +110,24 @@ for(let i = 0; i < numClouds; i++) {
 galaxy.style.transform = "rotate(10deg)";   // tilting the galaxy by 10 degrees
 
 
+/* MAKING THE COMET IN THE BACKGROUND OF THE EXPERIENCE SECTION */
+const cometContainer = document.getElementById('comet-container');
+const numStreaks = 20;      // number of comet streaks to be created for comet
+
+// creating the main big rock that the comet is "made of"
+const bigRock = document.createElement('div');
+bigRock.style.position = "absolute";
+bigRock.style.width = "35%";
+bigRock.style.height = "100%";
+bigRock.style.borderRadius = "50%";
+bigRock.style.backgroundColor = "blue";
+cometContainer.appendChild(bigRock);    // adding the big rock to the comet container
+
+for(let i = 0; i < numStreaks; i++) {
+
+}
+
+
 /* EVENT LISTENERS THAT DYNAMICALLY CHANGE THE CONNECTING CONSTELLATION LINES WITH WINDOW SIZE */
 // function that dynamically fixes the connecting line's anchor points onto two other elements
 function fixJobAnchors(object, anchor1, anchor2) {

@@ -108,7 +108,7 @@ a {
     cursor: pointer;
     overflow: auto;
 }
-.project-link {
+.link {
     color: rgb(188, 178, 204);
 }
 .icon {
@@ -199,6 +199,7 @@ a {
     max-height: 45vh;
     overflow-y: auto;
     display: grid;
+    justify-content: flex-start;
     border-radius: 20px;
     grid-template-columns: repeat(1, 1fr);
     background-color: #181a1b;
@@ -211,7 +212,13 @@ a {
 .job-icon:hover + .job-description-container {
     opacity: 80%;
 }
-
+.job-date {
+    position: relative; 
+    font-family: Ranade Bold;
+    top: -65%;
+    width: 100%; 
+    height: 30px;
+}
 .job-title {
     margin: 1vh 0vw;
 }
@@ -266,6 +273,7 @@ a {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     align-items: center;
+    justify-self: center;
     gap: 30px; 
 }
 #contact-container {
@@ -491,6 +499,14 @@ a {
     height: 100vh;
     width: 100vw;
     scrollbar-width: none;
+}
+#comet-container {
+    position: absolute;
+    width: 60vw; 
+    height: 40vh; 
+    background-color: white;
+    opacity: 0.3;
+    transform: rotate(220deg);
 }
 
 
