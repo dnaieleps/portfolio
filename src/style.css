@@ -376,6 +376,7 @@ a {
     position: absolute;
     border-radius: 50%;
     filter: blur(30px);
+    top: -20px;
     opacity: 0.2;
     transform: rotate(0deg);
     z-index: -2;
@@ -500,14 +501,32 @@ a {
     width: 100vw;
     scrollbar-width: none;
 }
-#comet-container {
+#big-comet-container {
     position: absolute;
-    left: 10vw;
-    top: 300%;
+    left: -25vw;
     height: 40vh; 
     aspect-ratio: 1/1;
     transform: rotate(120deg);
-    
+    animation: move-big-comet 10s linear infinite;
+    z-index: -10;
+}
+#small-comet-container {
+    position: absolute; 
+    left: 20vw; 
+    top: 110%;
+    height: 25vh;
+    aspect-ratio: 1/2;
+    z-index: -11;
+    transform: rotate(40deg);
+    animation: move-small-comet 6.5s linear infinite;
+}
+#comet-animation-container {
+    position: absolute; 
+    top: 250vh;
+    height: 200%;
+    width: 100vw;
+    overflow-y: hidden;
+    z-index: -10;
 }
 #big-rock {
     position: absolute;
@@ -520,7 +539,17 @@ a {
     filter: blur(4px);
     justify-self: center;
 }
-
+#small-rock {
+    position: absolute;
+    background-color: rgb(17, 19, 21);
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.2;
+    filter: blur(4px);
+    justify-self: center;
+}
 
 /* ALL ANIMATIONS VIA KEYFRAMES */
 @keyframes move-star {
@@ -532,4 +561,18 @@ a {
     0% {opacity: 25%; filter: saturation(0%)}
     50% {opacity: 100%; filter: saturation(100%)}
     100% {opacity: 25%; filter: saturation(0%)}
+}
+@keyframes move-big-comet {
+    from {
+        translate: 0;
+    } to {
+        translate: 170vw 170vh;
+    }
+}
+@keyframes move-small-comet {
+    from {
+        translate: 0;
+    } to {
+        translate: 90vw -200vh;
+    }
 }

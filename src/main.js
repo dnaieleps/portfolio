@@ -111,31 +111,36 @@ galaxy.style.transform = "rotate(10deg)";   // tilting the galaxy by 10 degrees
 
 
 /* MAKING THE COMET IN THE BACKGROUND OF THE EXPERIENCE SECTION */
-const cometContainer = document.getElementById('comet-container');
+const bigCometContainer = document.getElementById('big-comet-container');
+const smallCometContainer = document.getElementById('small-comet-container');
 
-// creating the main big rock that the comet is "made of"
+// creating the main big rock that the big comet is "made of"
 const bigRock = document.createElement('div');
 bigRock.id = 'big-rock';
-cometContainer.appendChild(bigRock);    // adding the big rock to the comet container
+bigCometContainer.appendChild(bigRock);    // adding the big rock to the comet container
 
-const numBlueStreaks = 15;      // number of comet streaks to be created for comet
-const numYellowStreaks = 15;      // number of comet streaks to be created for comet
-const numRedStreaks = 2;
-function generateStreaks(colorMin, numStreaks) {
+// creating the main small rock that the small comet is made of
+const smallRock = document.createElement('div');
+smallRock.id = 'small-rock';
+smallCometContainer.appendChild(smallRock);
+
+function generateStreaks(cometContainer, colorMin, numStreaks) {
     let counter = 0; 
     let distance = 15; 
     let flipper = -1;
-    let proportionToAnimate = 0.4;
+    let proportionToAnimate = 0.8;
 
     for(let i = 0; i < numStreaks; i++) {
         const streak = document.createElement('div'); 
         streak.classList.add('streak');
         
         streak.style.width = `${Math.random() * 10 + 15}%`;
-        streak.style.height = `${Math.random() * 200 + 200}%`;
+        streak.style.height = `${Math.random() * (cometContainer.offsetHeight/2) + (cometContainer.offsetHeight/1.5)}%`; // 200, 200
         streak.style.transform = `rotate(${-(i + 3) * flipper}deg)`;
         streak.style.transformOrigin = "left center";
-        streak.style.backgroundColor = `hsl(${Math.floor(Math.random() * 60) + colorMin}, 80%, 50%)`;
+
+        const firstColor = Math.floor(Math.random() * 60) + colorMin
+        streak.style.backgroundColor = `hsl(${firstColor}, 80%, 50%)`;
 
         cometContainer.appendChild(streak);
         switch (counter) {
@@ -146,33 +151,50 @@ function generateStreaks(colorMin, numStreaks) {
             case 1: 
                 streak.style.left = `${((cometContainer.offsetWidth/2) - (streak.offsetWidth/2)) + (distance * flipper)}px`;
                 counter = 0;
-                distance += 25;
+                distance += (cometContainer.offsetWidth/2 + cometContainer.offsetWidth * 0.5) / numStreaks;
                 break;
         }
         
-        /*
         if (Math.random() < proportionToAnimate) {
+            streak.style.transformOrigin = 'left center';
+
             streak.animate([
-                { transform: 'translateX(0px)' },
-                { transform: `translateX(100px)` },
-                { transform: 'translateX(200px)' }
+                { scale: '1 1' },
+                { scale: '1 0.6' },
+                { scale: '1 1' }
             ], {
-                duration: 30000,
+                duration: Math.random() * 3000 + 2000,
                 iterations: Infinity,
                 easing: 'ease-in-out',
             });
+
+            streak.animate([
+                { opacity: 0.2 },
+                { opacity: `${Math.random() * 0.3 + 0.5}` },
+                { opacity: 0.2 }
+            ], {
+                duration: Math.random() * 4000 + 1000,
+                iterations: Infinity, 
+                easing: 'ease-in-out',
+            });
         }
-        */
         
 
         flipper *= -1;
     }
 }
 
-generateStreaks(180, numBlueStreaks);
-generateStreaks(10, numYellowStreaks);
-generateStreaks(0, numRedStreaks);
+const numBigBlueStreaks = 15;       // number of blue streaks to be created for big comet
+const numBigYellowStreaks = 15;     // number of yellow streaks to be created for big comet
+const numBigRedStreaks = 2;         // number of red streaks to be created for big comet
+generateStreaks(bigCometContainer, 180, numBigBlueStreaks);
+generateStreaks(bigCometContainer, 10, numBigYellowStreaks);
+generateStreaks(bigCometContainer, 0, numBigRedStreaks);
 
+const numSmallBlueStreaks = 20; 
+const numSmallYellowStreaks = 8;
+generateStreaks(smallCometContainer, 180, numSmallBlueStreaks);
+generateStreaks(smallCometContainer, 20, numSmallYellowStreaks);
 
 /* EVENT LISTENERS THAT DYNAMICALLY CHANGE THE CONNECTING CONSTELLATION LINES WITH WINDOW SIZE */
 // function that dynamically fixes the connecting line's anchor points onto two other elements
