@@ -372,13 +372,13 @@ a {
     
     animation: glow 5s ease-in-out infinite;
 }
-.constellation-connector {
-    position: relative;
-    height: 2px;
-    background-color: white;
-    filter: blur(2px);
-    will-change: width;
-    z-index: 9;
+.streak {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.2;
+    transform: rotate(0deg);
+    z-index: -2;
 }
 
 
@@ -502,11 +502,23 @@ a {
 }
 #comet-container {
     position: absolute;
-    width: 60vw; 
+    left: 10vw;
+    top: 300%;
     height: 40vh; 
-    background-color: white;
-    opacity: 0.3;
-    transform: rotate(220deg);
+    aspect-ratio: 1/1;
+    transform: rotate(120deg);
+    
+}
+#big-rock {
+    position: absolute;
+    background-color: rgb(34, 36, 37);
+    width: 60%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.2;
+    filter: blur(4px);
+    justify-self: center;
 }
 
 

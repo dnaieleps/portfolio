@@ -112,20 +112,66 @@ galaxy.style.transform = "rotate(10deg)";   // tilting the galaxy by 10 degrees
 
 /* MAKING THE COMET IN THE BACKGROUND OF THE EXPERIENCE SECTION */
 const cometContainer = document.getElementById('comet-container');
-const numStreaks = 20;      // number of comet streaks to be created for comet
 
 // creating the main big rock that the comet is "made of"
 const bigRock = document.createElement('div');
-bigRock.style.position = "absolute";
-bigRock.style.width = "35%";
-bigRock.style.height = "100%";
-bigRock.style.borderRadius = "50%";
-bigRock.style.backgroundColor = "blue";
+bigRock.id = 'big-rock';
 cometContainer.appendChild(bigRock);    // adding the big rock to the comet container
 
-for(let i = 0; i < numStreaks; i++) {
+const numBlueStreaks = 15;      // number of comet streaks to be created for comet
+const numYellowStreaks = 15;      // number of comet streaks to be created for comet
+const numRedStreaks = 2;
+function generateStreaks(colorMin, numStreaks) {
+    let counter = 0; 
+    let distance = 15; 
+    let flipper = -1;
+    let proportionToAnimate = 0.4;
 
+    for(let i = 0; i < numStreaks; i++) {
+        const streak = document.createElement('div'); 
+        streak.classList.add('streak');
+        
+        streak.style.width = `${Math.random() * 10 + 15}%`;
+        streak.style.height = `${Math.random() * 200 + 200}%`;
+        streak.style.transform = `rotate(${-(i + 3) * flipper}deg)`;
+        streak.style.transformOrigin = "left center";
+        streak.style.backgroundColor = `hsl(${Math.floor(Math.random() * 60) + colorMin}, 80%, 50%)`;
+
+        cometContainer.appendChild(streak);
+        switch (counter) {
+            case 0: 
+                streak.style.left = `${((cometContainer.offsetWidth/2) - (streak.offsetWidth/2)) + (distance * flipper)}px`;
+                counter += 1;
+                break;
+            case 1: 
+                streak.style.left = `${((cometContainer.offsetWidth/2) - (streak.offsetWidth/2)) + (distance * flipper)}px`;
+                counter = 0;
+                distance += 25;
+                break;
+        }
+        
+        /*
+        if (Math.random() < proportionToAnimate) {
+            streak.animate([
+                { transform: 'translateX(0px)' },
+                { transform: `translateX(100px)` },
+                { transform: 'translateX(200px)' }
+            ], {
+                duration: 30000,
+                iterations: Infinity,
+                easing: 'ease-in-out',
+            });
+        }
+        */
+        
+
+        flipper *= -1;
+    }
 }
+
+generateStreaks(180, numBlueStreaks);
+generateStreaks(10, numYellowStreaks);
+generateStreaks(0, numRedStreaks);
 
 
 /* EVENT LISTENERS THAT DYNAMICALLY CHANGE THE CONNECTING CONSTELLATION LINES WITH WINDOW SIZE */
