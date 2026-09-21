@@ -90,6 +90,7 @@ a {
 .project-container:hover {
     transform: scale(1.02);
     transition: transform 0.3s ease-in-out;
+    background-color: #2b2e2e;
 }
 .spacer {
     margin-bottom: 600px; 
@@ -202,7 +203,7 @@ a {
     justify-content: flex-start;
     border-radius: 20px;
     grid-template-columns: repeat(1, 1fr);
-    background-color: #181a1b;
+    background-color: #100f16;
     text-align: center;
     padding: 20px;
     opacity: 0%;
@@ -281,6 +282,7 @@ a {
     text-align: center;
     justify-self: center;
     padding-bottom: 40px;
+    margin-top: 40px;
 }
 #linkbox {
     position: relative;
@@ -339,12 +341,26 @@ a {
     position: relative;
     background-color: #181a1b;
     border-radius: 100px;
-    height: 30%;
-    width: 175%;
+    max-height: 350px;
+    height: 40%;
+    width: 180%;
     opacity: 0.8;
     left: 10vw;
     top: 50%;
+    margin-right: 40vw;
     transform: translate(0, -50%);
+}
+#projects-section {
+    width: 10px;
+    height: 10px; 
+    position: relative;
+    top: -120px;
+}
+#experience-section {
+    width: 10px;
+    height: 10px; 
+    position: relative;
+    top: 0px;
 }
 
 
@@ -485,11 +501,9 @@ a {
 }
 #galaxy-container {
     position: absolute;
-    top: 190%;
-    left: 10%;
+    top: 150%;
     width: 100vw;
     height: 100%;
-    transform: translate(-50%, -50%) rotate(10deg);
     pointer-events: none; 
     z-index: -10;
 }
@@ -497,9 +511,10 @@ a {
     position: relative;
     overflow-x: auto;
     overflow-y: hidden;
-    height: 100vh;
+    height: 95vh;
     width: 100vw;
-    scrollbar-width: none;
+    scrollbar-width: 1;
+    margin: 100px 0px; 
 }
 #big-comet-container {
     position: absolute;

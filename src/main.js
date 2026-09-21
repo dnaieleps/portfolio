@@ -45,12 +45,12 @@ for(let i = 0; i < numCores; i++) {
     core.style.borderRadius = '50%';    // border-radius: 50% (circular)
     core.style.filter = `blur(${Math.random() * 15 + 5}px)`     // blurs gradient for better blending
 
-    core.style.width = `${(coreSize) * sizeScalar}px`;  // sets width of core cloud
-    core.style.height = `${(coreSize) * sizeScalar}px`; // sets height of core cloud
-    core.style.left = `${((window.innerWidth / 2) + (flipper * radialDistance)) - 350}px`;  // sets horizontal position 
-    
+    const w = coreSize * sizeScalar;
     const verticalSpread = (Math.random() - 0.5) * 80 * sizeScalar;     // sets variation in vertical position along galaxy line
-    core.style.top = `${verticalSpread - 60}px`;  // sets vertical position
+    core.style.width  = `${w}px`;
+    core.style.height = `${w}px`;
+    core.style.left = `calc(50% + ${flipper * radialDistance}px - ${w / 2}px)`;
+    core.style.top  = `calc(50% + ${verticalSpread}px - ${w / 2}px)`;
 
     core.style.opacity = `${Math.random() * 50}%`;  // sets opacity of core cloud
 
@@ -77,11 +77,15 @@ for(let i = 0; i < numClouds; i++) {
     cloud.style.position = 'absolute';
     cloud.style.borderRadius = '50%';
     cloud.style.filter = `blur(${Math.random() * 15 + 5}px)`
-    cloud.style.width = `${(Math.random() * (cloudSize * 2) + (cloudSize))}px`; // sets width of peripheral cloud, which is more elliptical than a core cloud
-    cloud.style.height = `${(cloudSize) * sizeScalar}px`;
-    cloud.style.left = `${((window.innerWidth / 2) + (flipper * radialDistance)) - 350}px`;   
+
+    const w = Math.random() * (cloudSize * 2) + cloudSize;
+    const h = cloudSize * sizeScalar;
     const verticalSpread = (Math.random() - 0.5) * 80; 
-    cloud.style.top = `${verticalSpread + (verticalSpread * sizeScalar)}px`;
+
+    cloud.style.width  = `${w}px`;
+    cloud.style.height = `${h}px`;
+    cloud.style.left = `calc(50% + ${flipper * radialDistance}px - ${w / 2}px)`;
+    cloud.style.top  = `calc(50% + ${verticalSpread + verticalSpread * sizeScalar}px - ${h / 2}px)`;
     cloud.style.opacity = `${Math.random() * 50}%`;
 
     galaxy.appendChild(cloud);  // add cloud to galaxy div
