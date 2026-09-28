@@ -270,6 +270,7 @@ a {
     font-size: 40px;
 }
 #project-grid {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
@@ -502,9 +503,10 @@ a {
 }
 #galaxy-container {
     position: absolute;
-    top: 150%;
+    top: 50%;
+    left: 50%;
     width: 100vw;
-    height: 100%;
+    height: 30vh;
     pointer-events: none; 
     z-index: -10;
 }
@@ -591,4 +593,173 @@ a {
     } to {
         translate: 90vw -200vh;
     }
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYER
+   Everything above is the original 13" MacBook Air layout and is untouched.
+   The rules below only switch on for other screen sizes / aspect ratios.
+   ========================================================================== */
+
+/* ---------- LARGE DESKTOPS & ULTRAWIDE ----------
+   The layout is built on vw/vh, so on big monitors we scale the root font size
+   (rem) and convert the fixed-px pieces to rem so text and decorations grow with it.
+   Scaling is bounded by height as well, so ultrawide screens don't get oversized text. */
+@media (min-width: 1600px) {
+    html { font-size: max(16px, min(1.088vw, 1.674vh)); }
+
+    #header { font-size: 2.5rem; }
+    nav .btn { padding: 0.625rem; margin-right: 1.875rem; }
+    .container { padding: 0.3125rem 1.5625rem; }
+    .project-container { padding: 2.5rem; }
+    #project-grid { gap: 1.875rem; }
+    .spacer { margin-bottom: 37.5rem; }
+    #experience { margin-top: 6.25rem; }
+    #jobs-container { margin: 6.25rem 0; }
+    .job { height: 6.25rem; }
+    .job-icon { width: 6.25rem; }
+    .job-date { height: 1.875rem; }
+    #star1 { width: 12.5rem; height: 12.5rem; }
+    #star2 { width: 9.375rem; height: 9.375rem; }
+    #corona1, #corona2 { width: 62.5rem; height: 62.5rem; }
+}
+
+/* ---------- LANDSCAPE TABLETS / SMALL LAPTOP WINDOWS ----------
+   Same layout, shrunk proportionally so it looks the same at 1024px as at 1280px. */
+@media (min-width: 901px) and (max-width: 1279px) and (min-aspect-ratio: 1/1) {
+    html { font-size: max(12px, 1.25vw); }
+}
+
+/* ---------- PHONES, PORTRAIT TABLETS & ANY NARROW / PORTRAIT WINDOW ---------- */
+@media (max-width: 900px), (max-aspect-ratio: 1/1) {
+    html {
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+    body { margin: 0; }
+
+    /* nav: fixed-size text instead of vw-based (which was ~5px on a phone) */
+    nav {
+        width: 100%;
+        left: 0;
+        height: max(7vh, 44px);
+        white-space: nowrap;
+        text-align: center;
+    }
+    nav .btn {
+        font-size: 0.8rem;
+        padding: 8px 5px;
+        margin-right: 4px;
+    }
+
+    /* intro */
+    #intro { width: min(88vw, 720px); top: 16vh; }
+    #header { font-size: clamp(1.5rem, 7vw, 2.4rem); }
+    .spacer { margin-bottom: 55vh; }
+
+    /* background binary stars: smaller so they fit a narrow viewport */
+    #star1 { width: 110px; height: 110px; }
+    #star2 { width: 85px; height: 85px; }
+    #corona1, #corona2 { width: 550px; height: 550px; }
+
+    /* section headings were sized in vw, so let them hug their text instead */
+    #projects, #experience {
+        width: fit-content;
+        height: auto;
+        margin-inline: auto;
+    }
+    #experience { margin-top: 60px; }
+
+    /* projects: single column; the galaxy anchors to the grid instead of the viewport */
+    #project-grid {
+        position: relative;
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: stretch;
+        width: 92vw;
+        margin-inline: auto;
+        gap: 24px;
+    }
+    #galaxy-container { top: 0; left: 0; width: 100%; height: 100%; }
+    .project-container {
+        width: 100%;
+        max-width: 720px;
+        margin-inline: auto;
+        grid-template-columns: minmax(0, 1fr);
+        padding: 22px;
+    }
+    .project-header {
+        grid-column: auto;
+        margin-right: 0;
+        font-size: 1.35rem;
+    }
+    .textbox {
+        grid-column: auto;
+        width: auto;
+        height: auto;
+        max-height: 38vh;
+        margin: 12px 0;
+        border-radius: 16px;
+        text-indent: 1.2rem;
+    }
+    .images-container {
+        grid-column: auto;
+        max-width: 100%;
+        height: auto;
+        gap: 10px;
+    }
+    .project-image {
+        max-width: 90%;
+        max-height: 40vh;
+    }
+    .project-image[src=""] { display: none; }   /* the empty placeholder image in the first card */
+    .scroll-container {
+        grid-column: auto;
+        width: auto;
+        margin: 10px 0 0;
+    }
+    .project-icon { max-height: 34px; }
+
+    /* experience timeline: wider spacing, descriptions open above/below the icon */
+    #experience-wrap { position: relative; }
+    #comet-animation-container { top: 0; height: 100%; width: 100%; }
+    #jobs-container {
+        width: 100%;
+        height: max(95svh, 520px);
+        margin: 60px 0;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+    #timeline-container { width: 350vw; left: 5vw; margin-right: 5vw; }
+    #nasa1 { left: 45vw; }
+    #moorpark1 { left: 130vw; }
+    #nasa2 { left: 215vw; }
+    #aila { left: 300vw; }
+    .job { scroll-snap-align: center; }
+    #nasa1-desc, #moorpark1-desc, #moorpark2-desc, #nasa2-desc, #aila-desc {
+        left: 50%;
+        top: calc(100% + 12px);
+        transform: translateX(-50%);
+    }
+    #moorpark1-desc {
+        top: auto;
+        bottom: calc(100% + 34px);
+        max-height: 30vh;
+    }
+    .job-description-container {
+        width: min(82vw, 440px);
+        max-height: 34vh;
+        padding: 14px;
+        font-size: 0.85rem;
+    }
+    .job-description { text-indent: 1.2em; }
+
+    /* contact */
+    #contact-container { width: min(88vw, 380px); margin-inline: auto; }
+    .icon { height: 36px; }
+}
+
+/* ---------- TOUCH DEVICES: no cursor, so no cursor glow ---------- */
+@media (hover: none) {
+    #cursor-follower { display: none; }
 }

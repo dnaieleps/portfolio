@@ -1,21 +1,42 @@
 /* CREATING THE STAR FIELD IN THE BACKGROUND OF THE ENTIRE PAGE */
 const starField = document.getElementById("star-field");
-const numStars = 1500; 
 
-// for loop that creates all the stars in the background of the intro section
-for(let i = 0; i < numStars; i++){ 
-    const star = document.createElement('div'); // creates new div representing a star
-    const starSize = Math.random() * 1.5 + 0.5; // randomizes star size every iteration
-    star.classList.add('bg-star');              // adds 'bg-star' class to new star
-    
-    // sets random dimensions and position of current star
-    star.style.width = `${starSize}px`;
-    star.style.height = `${starSize}px`;
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.top = `${Math.random() * 450}%`;
-
-    starField.appendChild(star);   // appends new star to starField div element
+// scale factor for pixel-sized decorations: 1 on laptops, <1 on small screens, >1 on large monitors
+function getUiScale() {
+    const rootScale = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16;
+    if (rootScale > 1) return rootScale;
+    return Math.min(1, Math.max(0.5, window.innerWidth / 1280));
 }
+
+function buildStarField() {
+    starField.innerHTML = "";   // clear any stars from a previous build so they don't stack up
+
+    // measure exactly where #comet-animation-container ends, so the star field always
+    // reaches that point and no further, at any screen size or content length
+    const cometContainer = document.getElementById('comet-animation-container');
+    const span = cometContainer.getBoundingClientRect().bottom + window.scrollY;
+
+    // reference density: 1500 stars over 450vh at 1470x956 (13" MacBook Air); other sizes keep the same density
+    const numStars = Math.min(4000, Math.round(1500 * (window.innerWidth * span) / (1470 * 956 * 4.5)));
+
+    for(let i = 0; i < numStars; i++){
+        const star = document.createElement('div'); // creates new div representing a star
+        const starSize = Math.random() * 1.5 + 0.5; // randomizes star size every iteration
+        star.classList.add('bg-star');              // adds 'bg-star' class to new star
+
+        star.style.width = `${starSize}px`;
+        star.style.height = `${starSize}px`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * span}px`;
+
+        starField.appendChild(star);
+    }
+}
+// built after load so the star field can cover the full page height on any screen
+window.addEventListener('load', buildStarField);
+window.addEventListener('resize', buildStarField);
+// rebuild once more shortly after, in case late-loading project images shifted the page height
+window.addEventListener('load', () => setTimeout(buildStarField, 500));
 
 
 /* MAKING A GLOW EFFECT FOLLOW THE CURSOR */
@@ -117,7 +138,13 @@ for(let i = 0; i < numClouds; i++) {
     sizeScalar -= 0.01;         // how much percent smaller each cloud gets as the cloud gets further from the galactic center
     flipper *= -1;              // alternating sides to spawn clouds every iteration
 }
-galaxy.style.transform = "rotate(10deg)";   // tilting the galaxy by 10 degrees
+function updateGalaxyTransform() {
+    // translate(-50%,-50%) keeps it centered on #project-grid (set in CSS, repeated here since
+    // this inline style would otherwise overwrite it); rotate/scale layer on top of that
+    galaxy.style.transform = `translate(-50%, -50%) rotate(10deg) scale(${getUiScale()})`;
+}
+updateGalaxyTransform();
+window.addEventListener('resize', updateGalaxyTransform);
 
 
 /* MAKING THE COMET IN THE BACKGROUND OF THE EXPERIENCE SECTION */
@@ -286,6 +313,17 @@ jobs.forEach((job) => {     // loops through all elements with class 'job' and a
     });
     
 });
+
+
+// touch screens have no hover-out, so tapping anywhere outside the tapped job closes the other descriptions
+document.addEventListener('touchstart', (e) => {
+    const tapped = e.target.closest('.job');
+    jobs.forEach((job) => {
+        if (job !== tapped) {
+            job.querySelectorAll('.job-description-container').forEach((d) => { d.style.opacity = "0"; });
+        }
+    });
+}, { passive: true });
 
 
 /* ADDING COPY-PASTE FUNCTIONALITY TO ICONS ON CONTACT ME SECTION */
