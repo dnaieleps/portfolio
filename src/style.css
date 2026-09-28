@@ -50,7 +50,7 @@ nav {
         padding: 10px;
         border-radius: 15%;
         border-width: 0px;
-        font-size: large;
+        font-size: clamp(0.5rem, 1.3vw, 20rem);
         font-family: Ranade Regular;
         margin-right: 30px;
     }
@@ -378,6 +378,7 @@ a {
         rgb(166, 43, 15) 75%
     );
     z-index: -1; 
+    filter: blur(10px);
 }
 .core {
     background: radial-gradient(
@@ -385,7 +386,7 @@ a {
         rgb(255, 238, 0) 75%
     );
     z-index: -1; 
-    
+    filter: blur(10px);
     animation: glow 5s ease-in-out infinite;
 }
 .streak {

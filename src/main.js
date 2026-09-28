@@ -43,7 +43,6 @@ for(let i = 0; i < numCores; i++) {
 
     core.style.position = 'absolute';   // position: absolute
     core.style.borderRadius = '50%';    // border-radius: 50% (circular)
-    core.style.filter = `blur(${Math.random() * 15 + 5}px)`     // blurs gradient for better blending
 
     const w = coreSize * sizeScalar;
     const verticalSpread = (Math.random() - 0.5) * 80 * sizeScalar;     // sets variation in vertical position along galaxy line
@@ -52,7 +51,15 @@ for(let i = 0; i < numCores; i++) {
     core.style.left = `calc(50% + ${flipper * radialDistance}px - ${w / 2}px)`;
     core.style.top  = `calc(50% + ${verticalSpread}px - ${w / 2}px)`;
 
-    core.style.opacity = `${Math.random() * 50}%`;  // sets opacity of core cloud
+    core.animate([
+        { opacity: 0.3 },
+        { opacity: 1.2 },
+        { opacity: 0.3 }
+    ], {
+        duration: Math.random() * 3000 + 2000, 
+        iterations: Infinity,
+        easing: 'ease-in-out',
+    });
 
     galaxy.appendChild(core);   // add cloud to galaxy div
     radialDistance += 7;        // how many pixels further away each core gets from the center of the galaxy per iteration
@@ -76,7 +83,6 @@ for(let i = 0; i < numClouds; i++) {
 
     cloud.style.position = 'absolute';
     cloud.style.borderRadius = '50%';
-    cloud.style.filter = `blur(${Math.random() * 15 + 5}px)`
 
     const w = Math.random() * (cloudSize * 2) + cloudSize;
     const h = cloudSize * sizeScalar;
