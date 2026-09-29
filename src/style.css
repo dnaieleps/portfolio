@@ -338,19 +338,6 @@ a {
     filter: blur(5px);
     z-index: -1;
 }
-#timeline-container {
-    position: relative;
-    background-color: #181a1b;
-    border-radius: 100px;
-    max-height: 350px;
-    height: 40%;
-    width: 180%;
-    opacity: 0.8;
-    left: 10vw;
-    top: 50%;
-    margin-right: 40vw;
-    transform: translate(0, -50%);
-}
 #projects-section {
     width: 10px;
     height: 10px; 
@@ -512,12 +499,29 @@ a {
 }
 #jobs-container {
     position: relative;
+    position: sticky;
     overflow-x: auto;
-    overflow-y: hidden;
-    height: 95vh;
+    height: 30vh;
     width: 100vw;
-    scrollbar-width: 1;
-    margin: 100px 0px; 
+    scrollbar-width: 0;
+    scrollbar-width: none;
+    margin: 20vh 0px; 
+}
+#jobs-container::-webkit-scrollbar {
+    display: none;
+}
+#timeline-container {
+    position: relative;
+    background-color: #181a1b;
+    border-radius: 100px;
+    max-height: 350px;
+    height: 100%;
+    width: 180%;
+    opacity: 0.8;
+    left: 10vw;
+    top: 50%;
+    margin-right: 40vw;
+    transform: translate(0, -50%);
 }
 #big-comet-container {
     position: absolute;

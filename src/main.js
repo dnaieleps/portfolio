@@ -410,3 +410,9 @@ document.getElementById('cv').addEventListener('click', () => {
     link.click();
     document.body.removeChild(link);
 });
+
+const jobsContainer = document.getElementById('jobs-container');
+jobsContainer.addEventListener('wheel', (event) => {
+    event.preventDefault(); 
+    jobsContainer.scrollLeft += event.deltaY;
+}, { passive: false});
