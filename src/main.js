@@ -412,7 +412,8 @@ document.getElementById('cv').addEventListener('click', () => {
 });
 
 const jobsContainer = document.getElementById('jobs-container');
-jobsContainer.addEventListener('wheel', (event) => {
+const timelineContainer = document.getElementById('timeline-container');
+timelineContainer.addEventListener('wheel', (event) => {
     event.preventDefault(); 
     jobsContainer.scrollLeft += event.deltaY;
 }, { passive: false});
