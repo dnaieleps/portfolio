@@ -289,7 +289,7 @@ jobs.forEach((job) => {     // loops through all elements with class 'job' and a
     icon.addEventListener('mouseenter', () => {     // event listener for when icon is first hovered
         clearTimeout(hideTimeout);          // resets hideTimeout timer
         descriptions.forEach((description) => {
-            description.style.opacity = "0.8";
+            description.style.opacity = "1";
         });
     });
     icon.addEventListener('mouseleave', () => {     // event listener for when cursor first leaves job icon
